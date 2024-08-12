@@ -1,0 +1,64 @@
+    1  apt-get update
+    2  halt
+    3  FILE=/ks/wait-background.sh; while ! test -f ${FILE}; do clear; sleep 0.1; done; bash ${FILE}
+    4  git clone https://github.com/kubernetes/kubernetes.git
+    5  cd kubernetes/
+    6  vi test/e2e_node/
+    7  cd test/e2e_node/
+    8  vi pod_graceful_termination_test.go
+    9  cd ../..
+   10  make WHAT=test/e2e/e2e.test
+   11  make WHAT=cmd/kubectl
+   12  pwd
+   13  go test -v -run 'TestPodLifecycle' ./test/e2e_node
+   14  git checkout v1.21.0
+   15  go test -v -run 'TestPodLifecycle' ./test/e2e_node
+   16  rm -rf vendor
+   17  go mod tidy
+   18  go mod vendor
+   19  pwd
+   20  go test -v -run 'TestPodLifecycle' ./test/e2e_node
+   21  ./_output/bin/e2e.test --ginkgo.focus="Pod Lifecycle"
+   22  cd _output/
+   23  ls
+   24  cd bin
+   25  ls
+   26  cd ../..
+   27  ls
+   28  controlplane $ go test -v -run 'TestPodLifecycle' ./test/e2e_node
+   29  # k8s.io/kubernetes/test/e2e_node
+   30  test/e2e_node/pod_graceful_termination_test.go:10:5: no required module provides package k8s.io/kubernetes/test/e2e/framework/pods; to add it:
+   31  FAIL    k8s.io/kubernetes/test/e2e_node [setup failed]
+   32  FAIL
+   33  controlplane $ ./_output/bin/e2e.test --ginkgo.focus="Pod Lifecycle"
+   34  Running Suite: Kubernetes e2e suite - /root/kubernetes
+   35  ======================================================
+   36  Random Seed: 1723433588 - will randomize all specs
+   37  Will run 2 of 6603 specs
+   38  ------------------------------
+   39  [SynchronizedBeforeSuite] [FAILED] [0.000 seconds]
+   40  [SynchronizedBeforeSuite] 
+   41  k8s.io/kubernetes/test/e2e/e2e.go:69
+   42  git status
+   43  cd ../..
+   44  pwd
+   45  ls
+   46  cd ~
+   47  cd kubernetes/
+   48  ls
+   49  pwd
+   50  git pull origin master
+   51  git config --global user.email "rehanfazalrx47@gmail.com"
+   52  git config --global user.name "RehanFazal77"
+   53  git pull origin master
+   54  export KUBECONFIG=~/.kube/config
+   55  kubectl config current-context
+   56  go test -v -run 'TestPodLifecycle' ./test/e2e_node
+   57  git checkout 1.22.0
+   58  git checkout v1.21.0
+   59  go test -v -run 'TestPodLifecycle' ./test/e2e_node
+   60  git checkout v1.21.0
+   61  go test -v -run 'TestPodLifecycle' ./test/e2e_node
+   62  ./_output/bin/e2e.test --ginkgo.focus="Pod Lifecycle"
+   63  history
+   64  history > DONE.txt
