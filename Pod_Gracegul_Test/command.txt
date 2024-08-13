@@ -1,21 +1,24 @@
-git clone https://github.com/kubernetes/kubernetes.git
+You need to follow this tutorial in order to complete the test
 
-cd kubernetes/test/e2e_node/
+1. git clone https://github.com/kubernetes/kubernetes.git
 
-vi pod_graceful_termination_test.go
+2. cd kubernetes/test/e2e_node/
 
-cd ../..
+3. vi pod_graceful_termination_test.go
 
-make WHAT=test/e2e/e2e.test
+4. cd ../..(go to kubernetes root folder)
 
-make WHAT=cmd/kubectl
+5. make WHAT=test/e2e/e2e.test
 
-git checkout v1.21.0
+6. make WHAT=cmd/kubectl
 
-./_output/bin/e2e.test --ginkgo.focus="Pod Lifecycle"
+7. git checkout v1.21.0
 
-If you get error related to kubeconfig
-run these command
-	export KUBECONFIG=~/.kube/config
-	kubectl config current-context
+8. export KUBECONFIG=~/.kube/config
+   kubectl config current-context
+
+9. ./_output/bin/e2e.test --ginkgo.focus="Pod Lifecycle"
+
+
+	
 
